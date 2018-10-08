@@ -1,0 +1,114 @@
+[
+  {
+    "Name": "Apple iPhone 7 256Gb Red",
+    "Id": 1,
+    "CategoryId": 1,
+    "CompanyId": 1,
+    "AssemblyDate": "2017-08-20 12:50:00.228",
+    "Price": 7430.0
+  },
+  {
+    "Name": "Apple iPhone 6S (Space Grey, 32GB)",
+    "Id": 2,
+    "CompanyId": 1,
+    "CategoryId": 1,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 3050.0
+  },
+  {
+    "Name": "Apple iPhone X (Space Grey, 256GB)",
+    "Id": 3,
+    "CompanyId": 1,
+    "CategoryId": 1,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 9999.0
+  },
+  {
+    "Name": "Samsung On7 Pro (Gold)",
+    "Id": 4,
+    "CompanyId": 2,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 7990.0
+  },
+  {
+    "Name": "Samsung Galaxy On7 Prime (Gold, 4GB RAM + 64GB Memory)",
+    "Id": 5,
+    "CompanyId": 2,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 1399.0
+  },
+  {
+    "Name": "Redmi 6 Pro (Black, 32GB)",
+    "Id": 6,
+    "CompanyId": 4,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 1149.0
+  },
+  {
+    "Name": "Redmi Y2 (Rose Gold, 32GB)",
+    "Id": 7,
+    "CompanyId": 4,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 9999.0
+  },
+  {
+    "Name": "LG Q6 (Black, 18:9 FullVision Display)",
+    "Id": 8,
+    "CompanyId": 5,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 1182.0
+  },
+  {
+    "Name": "LG V30+ (18:9 OLED FullVisionTM, 128GB, Black)",
+    "Id": 9,
+    "CompanyId": 5,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 3496.0
+  },
+  {
+    "Name": "BlackBerry Passport 32GB (White)",
+    "Id": 10,
+    "CompanyId": 8,
+    "CategoryId": 3,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 2699.0
+  },
+  {
+    "Name": "Huawei P20 Pro Blue (40MP Leica Triple Camera, 6GB+128GB)",
+    "Id": 11,
+    "CompanyId": 6,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 6499.0
+  },
+  {
+    "Name": "Nokia 6.1 (2018) (4GB + 64GB, Blue-Gold)",
+    "Id": 12,
+    "CompanyId": 3,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 1595.0
+  },
+  {
+    "Name": "Sony Xperia R1 Plus Dual SIM (Black)",
+    "Id": 13,
+    "CompanyId": 3,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-08-20 12:50:00.228",
+    "Price": 1189.0
+  },
+  {
+    "Name": "Sony Xperia R1 Plus Dual SIM (Red)",
+    "Id": 14,
+    "CompanyId": 7,
+    "CategoryId": 2,
+    "AssemblyDate": "2018-07-20 12:50:00.228",
+    "Price": 1179.0
+  }
+]

@@ -1,0 +1,77 @@
+﻿@using MyFirstMVC.ViewModels
+@model MyFirstMVC.ViewModels.DetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Phone</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone.Company)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone.Company)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone.Category.Id)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Phone.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<table class="table-bordered table">
+    <thead>
+
+    <tr>
+        <th>
+            User name
+        </th>
+        <th>
+            Review
+        </th>
+        <th>
+            Rate
+        </th>
+    </tr>
+    </thead>
+    @foreach (Feedback review in Model.Feedbacks)
+    {
+        <tr>
+            <td>
+                @review.Author
+            </td>
+            <td>
+                @review.Message
+            </td>
+            <td>
+                <b>@review.Rating</b>
+            </td>
+        </tr>
+    }
+</table>
+
+@{ await Html.RenderPartialAsync("_CreateFeedBackView", Model.Feedback);}

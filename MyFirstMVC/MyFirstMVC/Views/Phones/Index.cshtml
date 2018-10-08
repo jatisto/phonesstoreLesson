@@ -1,0 +1,63 @@
+﻿@using MyFirstMVC.ViewModels
+
+@model IndexViewModel
+
+@{
+
+    ViewData["Title"] = "Home Page";
+
+}
+
+<br />
+<a asp-action="Create">Создать</a>
+@using (Html.BeginForm("Index", "Phones", FormMethod.Get))
+
+{
+    @Html.Label("Name", "Модель ")
+    @Html.TextBox("name", Model.Name)
+
+    <select name="companyId" class="form-control">
+        <option></option>
+        @foreach (Company comp in Model.Companies)
+        {
+            if (Model.Company != null && Model.Company.Id == comp.Id)
+            {
+                <option value="@comp.Id" selected="selected">@comp.Name</option>
+            }
+            else
+            {
+                <option value="@comp.Id">@comp.Name</option>
+            }
+
+        }
+    </select>
+
+    <input type="submit" class="btn btn-success" />
+}
+
+<br />
+
+
+<table class="table table-bordered">
+
+    @foreach (Phone p in Model.Phones)
+
+    {
+
+        <tr>
+
+            <td><a asp-action="Edit" asp-route-id="@p.Id">@p.Name</a></td>
+
+            <td>
+
+                <a asp-area="" asp-controller="Phones" asp-action="Index" asp-route-companyId="@p.CompanyId">@p.Company?.Name</a>
+            </td>
+            <td>@p.Price</td>
+
+        </tr>
+
+    }
+
+</table>
+
+@{ await Html.RenderPartialAsync("_Calendar"); }
