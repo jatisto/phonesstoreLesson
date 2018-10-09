@@ -11,11 +11,20 @@ using MyFirstMVC.ViewModels;
 
 namespace MyFirstMVC.Controllers
 {
-    
     public class PhoneViewModel
     {
         public string Name { get; set; }
         public double Price { get; set; }
+    }
+
+    public enum PhoneOrder
+    {
+        NameAsc,
+        NameDesc,
+        CompanyAsc,
+        CompanyDesc,
+        PriceAsc,
+        PriceDesc
     }
 
     public class PhonesController : Controller
@@ -34,35 +43,97 @@ namespace MyFirstMVC.Controllers
         }
 
         // GET: Phones
-        public async Task<IActionResult> Index(int? companyId, string name)
+        public async Task<IActionResult> Index(
+            string name,
+            double? priceFrom,
+            double? priceTo,
+            int? companyId,
+            PhoneOrder PhoneOrder = PhoneOrder.NameAsc)
         {
-            //CRUD
-            List<Company> companies = _context.Companies.ToList();
-
-           
-
-            //companies.Insert(0, new Company { Id = 0, Name = "Все" });
-
-            var phones = _context.Phones.Include(p => p.Category).Include(p => p.Company).ToList();
-
-            IndexViewModel ivm = new IndexViewModel();
-
-            if (companyId.HasValue)
-            {
-                phones = phones.Where(p => p.Company.Id == companyId.Value).ToList();
-                ivm.Company = companies.FirstOrDefault(c => c.Id == companyId.Value);
-            }
+            IQueryable<Phone> phonesSort = _context.Phones.Include(s => s.Company);
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-                phones = phones.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
-                ivm.Name = name;
+                phonesSort = phonesSort.Where(s => s.Name.Contains(name));
             }
 
-            ivm.Companies = companies;
-            ivm.Phones = phones;
+            if (priceFrom.HasValue)
+            {
+                phonesSort = phonesSort.Where(s => s.Price >= priceFrom.Value);
+            }
+
+            if (priceTo.HasValue)
+            {
+                phonesSort = phonesSort.Where(s => s.Price <= priceTo.Value);
+            }
+
+            if (companyId.HasValue)
+            {
+                phonesSort = phonesSort.Where(s => s.CompanyId == companyId.Value);
+            }
+
+
+            ViewBag.NameSort = PhoneOrder == PhoneOrder.NameAsc ? PhoneOrder.NameDesc : PhoneOrder.NameAsc;
+            ViewBag.PriceSort = PhoneOrder == PhoneOrder.PriceAsc ? PhoneOrder.PriceDesc : PhoneOrder.PriceAsc;
+            ViewBag.CompanySort = PhoneOrder == PhoneOrder.CompanyAsc ? PhoneOrder.CompanyDesc : PhoneOrder.CompanyAsc;
+
+            switch (PhoneOrder)
+            {
+                case PhoneOrder.NameAsc:
+                    phonesSort = phonesSort.OrderBy(s => s.Name);
+                    break;
+                case PhoneOrder.NameDesc:
+                    phonesSort = phonesSort.OrderByDescending(s => s.Name);
+                    break;
+                case PhoneOrder.PriceAsc:
+                    phonesSort = phonesSort.OrderBy(s => s.Price);
+                    break;
+                case PhoneOrder.PriceDesc:
+                    phonesSort = phonesSort.OrderByDescending(s => s.Price);
+                    break;
+                case PhoneOrder.CompanyAsc:
+                    phonesSort = phonesSort.OrderBy(s => s.Company.Name);
+                    break;
+                case PhoneOrder.CompanyDesc:
+                    phonesSort = phonesSort.OrderByDescending(s => s.Company.Name);
+                    break;
+            }
             
-            return View(ivm);
+            PhonesIndexViewModel model = new PhonesIndexViewModel()
+            {
+                Phones = await phonesSort.ToListAsync(),
+                Name = name,
+                CompanyId = companyId,
+                PriceFrom = priceFrom,
+                PriceTo = priceTo,
+                Companies = new SelectList(_context.Companies, "Id", "Name")
+            };
+
+//            //CRUD
+//            List<Company> companies = _context.Companies.ToList();
+//            //companies.Insert(0, new Company { Id = 0, Name = "Все" });
+//
+//            var phones = _context.Phones.Include(p => p.Category).Include(p => p.Company).ToList();
+//
+//            IndexViewModel ivm = new IndexViewModel();
+//
+//            if (companyId.HasValue)
+//            {
+//                phones = phones.Where(p => p.Company.Id == companyId.Value).ToList();
+//                ivm.Company = companies.FirstOrDefault(c => c.Id == companyId.Value);
+//            }
+//
+//            if (!string.IsNullOrWhiteSpace(name))
+//            {
+//                phones = phones.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+//                ivm.Name = name;
+//            }
+//
+//            ivm.Companies = companies;
+//            ivm.Phones = phones;
+
+//            return View(ivm); 
+            return View(model);
         }
 
         // GET: Phones/Details/5
@@ -82,7 +153,7 @@ namespace MyFirstMVC.Controllers
                 return NotFound();
             }
 
-            ViewBag.RateList = new SelectList(new[] { 1, 2, 3, 4, 5 });
+            ViewBag.RateList = new SelectList(new[] {1, 2, 3, 4, 5});
             ViewBag.PhoneId = phone.Id;
 
             DetailsViewModel model = new DetailsViewModel()
@@ -107,7 +178,8 @@ namespace MyFirstMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Company,Price,CategoryId")] Phone phone)
+        public async Task<IActionResult> Create([Bind("Id,Name,CompanyId,Price,CategoryId")]
+            Phone phone)
         {
             if (ModelState.IsValid)
             {
@@ -115,8 +187,9 @@ namespace MyFirstMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
-            ViewData["Companies"] = new SelectList(_context.Companies, "Id", "Name");
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             return View(phone);
         }
 
@@ -134,7 +207,7 @@ namespace MyFirstMVC.Controllers
             {
                 return NotFound();
             }
-            
+
 
             return View(GetEditModel(phone));
         }
@@ -159,6 +232,7 @@ namespace MyFirstMVC.Controllers
             {
                 return View(GetEditModel(phone));
             }
+
             try
             {
                 phone = _context.Phones.FirstOrDefault(c => c.Id == id);
@@ -178,9 +252,8 @@ namespace MyFirstMVC.Controllers
                     throw;
                 }
             }
+
             return RedirectToAction(nameof(Index));
-            
-            
         }
 
         private EditPhoneViewModel GetEditModel(Phone phone)
@@ -239,7 +312,7 @@ namespace MyFirstMVC.Controllers
             if (!ModelState.IsValid)
             {
                 int phoneId = feedback.PhoneId;
-                ViewBag.RateList = new SelectList(new[] { 1, 2, 3, 4, 5 });
+                ViewBag.RateList = new SelectList(new[] {1, 2, 3, 4, 5});
                 ViewBag.PhoneId = phoneId;
                 return View("Details", new DetailsViewModel()
                 {

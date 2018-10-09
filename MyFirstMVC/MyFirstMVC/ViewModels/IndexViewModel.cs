@@ -34,4 +34,15 @@ namespace MyFirstMVC.ViewModels
         public SelectList Sizes { get; set; }
         public SelectList Companies { get; set; }
     }
+
+    public class PhonesIndexViewModel
+    {
+        public IEnumerable<Phone> Phones { get; set; }
+        public string Name { get; set; }
+        public double? PriceFrom { get; set; }
+        public double? PriceTo { get; set; }
+        public int? CompanyId { get; set; }
+
+        public SelectList Companies { get; set; }
+    }
 }

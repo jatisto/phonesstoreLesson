@@ -1,114 +1,106 @@
-[
+﻿[
   {
-    "Name": "Apple iPhone 7 256Gb Red",
     "Id": 1,
-    "CategoryId": 1,
+    "Name": "Apple iPhone 7 256Gb Red",
     "CompanyId": 1,
-    "AssemblyDate": "2017-08-20 12:50:00.228",
-    "Price": 7430.0
+    "Price": 7440.0,
+    "CategoryId": 1,
+    "AssemblyDate": "1989-07-20 17:57:07.770"
   },
   {
-    "Name": "Apple iPhone 6S (Space Grey, 32GB)",
     "Id": 2,
+    "Name": "Apple iPhone 6S (Space Grey, 32GB)",
     "CompanyId": 1,
-    "CategoryId": 1,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 3050.0
+    "Price": 3050.0,
+    "AssemblyDate": "1989-07-20 17:57:07.770",
+    "CategoryId": 1
   },
   {
-    "Name": "Apple iPhone X (Space Grey, 256GB)",
     "Id": 3,
+    "Name": "Apple iPhone X (Space Grey, 256GB)",
     "CompanyId": 1,
-    "CategoryId": 1,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 9999.0
+    "Price": 9999.9,
+    "AssemblyDate": "1989-07-20 17:57:07.770",
+    "CategoryId": 1
   },
   {
-    "Name": "Samsung On7 Pro (Gold)",
     "Id": 4,
+    "Name": "Samsung On7 Pro (Gold)",
     "CompanyId": 2,
-    "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 7990.0
+    "Price": 799.0,
+    "AssemblyDate": "1989-07-20 17:57:07.770",
+    "CategoryId": 2
   },
   {
-    "Name": "Samsung Galaxy On7 Prime (Gold, 4GB RAM + 64GB Memory)",
     "Id": 5,
+    "Name": "Samsung Galaxy On7 Prime (Gold, 4GB RAM + 64GB Memory)",
     "CompanyId": 2,
-    "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 1399.0
+    "Price": 1399.0,
+    "AssemblyDate": "1989-07-20 17:57:07.770",
+    "CategoryId": 2
   },
   {
-    "Name": "Redmi 6 Pro (Black, 32GB)",
     "Id": 6,
+    "Name": "Redmi 6 Pro (Black, 32GB)",
     "CompanyId": 4,
-    "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 1149.0
+    "Price": 1149.9,
+    "AssemblyDate": "1989-07-20 17:57:07.770",
+    "CategoryId": 2
   },
   {
-    "Name": "Redmi Y2 (Rose Gold, 32GB)",
     "Id": 7,
+    "Name": "Redmi Y2 (Rose Gold, 32GB)",
     "CompanyId": 4,
+    "Price": 999.9,
     "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 9999.0
+    "AssemblyDate": "1989-07-20 17:57:07.770"
   },
   {
-    "Name": "LG Q6 (Black, 18:9 FullVision Display)",
     "Id": 8,
+    "Name": "LG Q6 (Black, 18:9 FullVision Display)",
     "CompanyId": 5,
+    "Price": 1182.0,
     "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 1182.0
+    "AssemblyDate": "1989-07-20 17:57:07.770"
   },
   {
-    "Name": "LG V30+ (18:9 OLED FullVisionTM, 128GB, Black)",
     "Id": 9,
+    "Name": "LG V30+ (18:9 OLED FullVisionTM, 128GB, Black)",
     "CompanyId": 5,
+    "Price": 3496.3,
     "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 3496.0
+    "AssemblyDate": "1989-07-20 17:57:07.770"
   },
   {
-    "Name": "BlackBerry Passport 32GB (White)",
     "Id": 10,
+    "Name": "BlackBerry Passport 32GB (White)",
     "CompanyId": 8,
+    "Price": 2699.9,
     "CategoryId": 3,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 2699.0
+    "AssemblyDate": "1989-07-20 17:57:07.770"
   },
   {
-    "Name": "Huawei P20 Pro Blue (40MP Leica Triple Camera, 6GB+128GB)",
     "Id": 11,
+    "Name": "Huawei P20 Pro Blue (40MP Leica Triple Camera, 6GB+128GB)",
     "CompanyId": 6,
-    "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 6499.0
+    "Price": 6499.9,
+    "AssemblyDate": "1989-07-20 17:57:07.770",
+    "CategoryId": 2
   },
   {
-    "Name": "Nokia 6.1 (2018) (4GB + 64GB, Blue-Gold)",
     "Id": 12,
+    "Name": "Nokia 6.1 (2018) (4GB + 64GB, Blue-Gold)",
     "CompanyId": 3,
-    "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 1595.0
+    "Price": 1595.0,
+    "AssemblyDate": "1989-07-20 17:57:07.770",
+    "CategoryId": 2
   },
   {
-    "Name": "Sony Xperia R1 Plus Dual SIM (Black)",
     "Id": 13,
-    "CompanyId": 3,
-    "CategoryId": 2,
-    "AssemblyDate": "2018-08-20 12:50:00.228",
-    "Price": 1189.0
-  },
-  {
-    "Name": "Sony Xperia R1 Plus Dual SIM (Red)",
-    "Id": 14,
+    "Name": "Sony Xperia R1 Plus Dual SIM (Black)",
     "CompanyId": 7,
-    "CategoryId": 2,
-    "AssemblyDate": "2018-07-20 12:50:00.228",
-    "Price": 1179.0
+    "Price": 1189.9,
+    "AssemblyDate": "1989-07-20 17:57:07.770",
+    "CategoryId": 2
   }
 ]

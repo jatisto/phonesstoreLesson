@@ -1,63 +1,140 @@
-﻿@using MyFirstMVC.ViewModels
+﻿@* @using MyFirstMVC.ViewModels *@
+@* *@
+@* @model IndexViewModel *@
+@* *@
+@* @{ *@
+@* *@
+@*     ViewData["Title"] = "Home Page"; *@
+@* *@
+@* } *@
+@* *@
+@* <br /> *@
+@* <a asp-action="Create">Создать</a> *@
+@* @using (Html.BeginForm("Index", "Phones", FormMethod.Get)) *@
+@* *@
+@* { *@
+@*     @Html.Label("Name", "Модель ") *@
+@*     @Html.TextBox("name", Model.Name) *@
+@* *@
+@*     <select name="companyId" class="form-control"> *@
+@*         <option></option> *@
+@*         @foreach (Company comp in Model.Companies) *@
+@*         { *@
+@*             if (Model.Company != null && Model.Company.Id == comp.Id) *@
+@*             { *@
+@*                 <option value="@comp.Id" selected="selected">@comp.Name</option> *@
+@*             } *@
+@*             else *@
+@*             { *@
+@*                 <option value="@comp.Id">@comp.Name</option> *@
+@*             } *@
+@* *@
+@*         } *@
+@*     </select> *@
+@* *@
+@*     <input type="submit" class="btn btn-success" /> *@
+@* } *@
+@* *@
+@* <br /> *@
+@* *@
+@* *@
+@* *@
+@* <table class="table table-bordered"> *@
+@* *@
+@*     @foreach (Phone p in Model.Phones) *@
+@* *@
+@*     { *@
+@* *@
+@*         <tr> *@
+@* *@
+@*             <td><a asp-action="Edit" asp-route-id="@p.Id">@p.Name</a></td> *@
+@* *@
+@*             <td> *@
+@* *@
+@*                 <a asp-area="" asp-controller="Phones" asp-action="Index" asp-route-companyId="@p.CompanyId">@p.Company?.Name</a> *@
+@*             </td> *@
+@*             <td>@p.Price</td> *@
+@* *@
+@*         </tr> *@
+@* *@
+@*     } *@
+@* *@
+@* </table> *@
+@* *@
+@* @{ await Html.RenderPartialAsync("_Calendar"); } *@
 
-@model IndexViewModel
+
+@using MyFirstMVC.ViewModels
+@model MyFirstMVC.ViewModels.PhonesIndexViewModel
 
 @{
-
-    ViewData["Title"] = "Home Page";
-
+    ViewData["Title"] = "Index";
 }
 
-<br />
-<a asp-action="Create">Создать</a>
-@using (Html.BeginForm("Index", "Phones", FormMethod.Get))
+<h2>Телефоны</h2>
 
-{
-    @Html.Label("Name", "Модель ")
-    @Html.TextBox("name", Model.Name)
+<p>
+    <a asp-action="Create">Create</a>
+</p>
 
-    <select name="companyId" class="form-control">
-        <option></option>
-        @foreach (Company comp in Model.Companies)
-        {
-            if (Model.Company != null && Model.Company.Id == comp.Id)
-            {
-                <option value="@comp.Id" selected="selected">@comp.Name</option>
-            }
-            else
-            {
-                <option value="@comp.Id">@comp.Name</option>
-            }
+<form method="get">
+    <div class="form-inline form-group">
+        <label class="control-label">Имя</label>
+        @Html.TextBox("name", Model.Name, htmlAttributes: new {@class = "form-control"})
+    </div>
+    <div class="form-inline form-group">
+        <label for="priceFrom" class="control-label">Цена от</label>
+        @Html.TextBox("priceFrom", Model.PriceFrom, htmlAttributes: new {@class = "form-control"})
+    </div>
+    <div class="form-inline form-group">
+        <label for="priceTo" class="control-label">до</label>
+        @Html.TextBox("priceTo", Model.PriceTo, htmlAttributes: new {@class = "form-control"})
+    </div>
 
-        }
-    </select>
+    <input type="submit" value="Фильтр"/>
+</form>
 
-    <input type="submit" class="btn btn-success" />
-}
-
-<br />
-
-
-<table class="table table-bordered">
-
-    @foreach (Phone p in Model.Phones)
-
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">
+                Имя:
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.PriceSort">
+                Цена:
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.CompanySort">
+                Компания:
+            </a>
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Phones)
     {
-
         <tr>
-
-            <td><a asp-action="Edit" asp-route-id="@p.Id">@p.Name</a></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
 
             <td>
-
-                <a asp-area="" asp-controller="Phones" asp-action="Index" asp-route-companyId="@p.CompanyId">@p.Company?.Name</a>
+                @Html.DisplayFor(modelItem => item.Company.Name)
             </td>
-            <td>@p.Price</td>
-
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
         </tr>
-
     }
-
+    </tbody>
 </table>
-
-@{ await Html.RenderPartialAsync("_Calendar"); }
